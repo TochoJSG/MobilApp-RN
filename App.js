@@ -1,6 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-//import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useCallback , useState } from 'react';
+
 /*import ContenidoInicio from './src/componentes/ContenidoInicio.jsx';
 import SearchBar from './src/componentes/SearchBar.jsx';
 import FullPageMenu from './src/componentes/FullPageMenu.jsx';*/
@@ -18,6 +21,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [ fontsLoaded ] = useFonts({
+    regular: require('./assets/fonts/Poppins-Regular.ttf'),
+    light: require('./assets/fonts/Poppins-Light.ttf'),
+    bold: require('./assets/fonts/Poppins-Bold.ttf'),
+    medium: require('./assets/fonts/Poppins-Medium.ttf'),
+    extrabold: require('./assets/fonts/Poppins-ExtraBold.ttf'),
+    semibold: require('./assets/fonts/Poppins-SemiBold.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async()=>{
+    if(fontsLoaded) await SplashScreen.hideAsync();
+  },[fontsLoaded]);
+
+  if(!fontsLoaded) return null;
+
   const [isActive, setIsActive] = useState(false);//Funcionalidad del componente
   const menutoggle = ()=>{
     setIsActive(!isActive);
@@ -26,7 +44,7 @@ export default function App() {
   const [titulo, setTitulo] = useState('');
   const [texto, setTexto] = useState('');
 
-  const postContent = () => {
+  const postContent = () =>{
     fetch('http://localhost:3000/api/contenido', {//Si Expo corre en dispositivo móvil, usa la IP de tu computadora local en lugar de localhost para conectarte al servidor.
       method: 'POST',
       headers: {
@@ -35,12 +53,8 @@ export default function App() {
       body: JSON.stringify({ titulo, texto }),
     })
     .then(response => response.json())
-    .then(data => {
-      console.log('Contenido guardado:', data);
-    })
-    .catch(error => {
-      console.error('Error al guardar el contenido:', error);
-    });
+    .then(data => console.log('Contenido guardado:', data) )
+    .catch(error => console.error('Error al guardar el contenido:', error) );
   };
 
   return (
@@ -64,4 +78,17 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+}//Close Main Function App
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:'#fff',
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  textStyle:{
+    fontFamily:'regular',
+    fontSize:19,
+  }
+});
