@@ -1,13 +1,12 @@
-import { View,Text } from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
-import { createBottomTabNavigation } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home';
-import Search from '../screens/Search';
-import Profile from '../screens/Profile';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../constants/index';
 
-const Tab = createBottomTabNavigation();
+import { Home, Profile, Search } from '../screens';
+
+const Tab = createBottomTabNavigator();
 
 const screenOptions = {
     tabBarShowLabel:false,
@@ -25,7 +24,7 @@ const screenOptions = {
 
 const BottomTabNavigation = () =>{
     return (
-        <Tab.Navigation screenOptions={screenOptions}>
+        <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen 
                 name="Home" 
                 component={ Home }
@@ -57,7 +56,7 @@ const BottomTabNavigation = () =>{
                 name="Profile" 
                 component={ Profile }
                 options={{
-                    tabBarIcon: ({focused})=>{
+                    tabBarIcon: ({ focused })=>{
                         return (
                             <Ionicons 
                                 name={focused? 'person':'person-outline'} 
@@ -67,7 +66,7 @@ const BottomTabNavigation = () =>{
                         );
                     },
                 }} />
-        </Tab.Navigation>
+        </Tab.Navigator>
     );
 };
 
