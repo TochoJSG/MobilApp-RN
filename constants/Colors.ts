@@ -43,7 +43,7 @@ export const Colors = {
 
 const SIZE = {
   xSmall:10,
-  small:12,
+  small:13,
   medium:16,
   large:19,
   xLarge:23,
