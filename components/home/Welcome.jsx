@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const Welcome = () =>{
     const navigation = useNavigation();
+    
     return(
         <View>
             <View style={styles.container}>

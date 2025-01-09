@@ -1,12 +1,12 @@
 //import { StatusBar } from 'expo-status-bar';
-//import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback , useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabNavigation from './navigation/BottomTabNavigation.js';
-import { Cart } from './screens';
+import { Cart, ProductDetails } from './screens';
 /*import ContenidoInicio from './src/componentes/ContenidoInicio.jsx';
 import SearchBar from './src/componentes/SearchBar.jsx';
 import FullPageMenu from './src/componentes/FullPageMenu.jsx';
@@ -61,13 +61,19 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen 
           name='Bottom Navigation'
-          component={BottomTabNavigation}
+          component={ BottomTabNavigation }
           options={{ headerShown:false }}
         />
 
         <Stack.Screen 
           name='Cart'
           component={Cart}
+          options={{ headerShown:false }}
+        />
+
+        <Stack.Screen 
+          name='ProductDetails'
+          component={ProductDetails}
           options={{ headerShown:false }}
         />
       </Stack.Navigator>
