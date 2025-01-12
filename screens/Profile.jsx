@@ -1,127 +1,13 @@
-import { StyleSheet } from 'react-native';
-import { Colors, SIZE } from '../constants/index';
+import { Text } from 'react-native';
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:Colors.lightWhite,
-    },
-    upperRow:{
-        marginHorizontal:19,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        position:'absolute',
-        top:SIZE.xxLarge,
-        width:SIZE.width-33,
-        zIndex:999,
-    },
-    image:{
-        aspectRatio:1,
-        resizeMode:'cover',
-    },
-    details:{
-        marginTop:-SIZE.large,
-        backgroundColor:Colors.lightWhite,
-        width:SIZE.width,
-        borderTopLeftRadius:SIZE.medium,
-        borderTopRightRadius:SIZE.medium,
-    },
-    titleRow:{
-        marginHorizontal:19,
-        paddingBottom:SIZE.small,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        width:SIZE.width-45,
-        top:19,
-    },
-    title:{
-        fontFamily:'bold',
-        fontSize:SIZE.large,
-    },
-    priceWrapper:{
-        backgroundColor:Colors.secondary,
-        borderRadius:SIZE.large,
-    },
-    price:{
-        padding:15,
-        fontFamily:'semibold',
-        fontSize:SIZE.large,
-    },
-    ratingRow:{
-        paddingBottom:SIZE.small,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        width:SIZE.width-10,
-        top:5,
-    },
-    rating:{
-        top:SIZE.large,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center',
-        marginHorizontal:SIZE.large,
-    },
-    ratingText:{
-        color:Colors.gray,
-        fontFamily:'medium',
-        paddingHorizontal:9,
-    },
-    descriptionWrapper:{
-        marginTop:SIZE.large*2,
-        marginHorizontal:SIZE.large,
-    },
-    description:{
-        fontFamily:'medium',
-        fontSize:SIZE.large-2,
-    },
-    descText:{
-        fontFamily:'regular',
-        fontSize:SIZE.small,
-        textAlign:'justify',
-        marginBottom:SIZE.small-16,
-    },
-    location:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        backgroundColor:Colors.secondary,
-        padding:5,
-        borderRadius:SIZE.large,
-        marginBottom:0,
-    },
-    cartRow:{
-        paddingBottom:SIZE.small,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        width:SIZE.width-19,
-        marginTop:-13,
-    },
-    cartBtn:{
-        width:SIZE.width*0.66,
-        backgroundColor: Colors.black,
-        padding:SIZE.small/2,//small
-        borderRadius:SIZE.large,
-        marginLeft:16,
-    },
-    cartTitle:{
-        fontFamily:'bold',
-        fontSize:SIZE.medium,
-        color:Colors.lightWhite,
-        marginLeft:SIZE.xxLarge,
-    },
-    addCart:{
-        width:35,
-        height:35,
-        borderRadius:50,
-        margin:SIZE.small,
-        backgroundColor:Colors.black,
-        alignItems:'center',
-        justifyContent:'center',
-    },
-});
+const Profile = () =>{
+    return(
+        <SafeAreaView>
+            <Text>Profile</Text>
+        </SafeAreaView>
+    );
+};
 
-export default styles;
+export default Profile;
