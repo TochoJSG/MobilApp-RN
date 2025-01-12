@@ -1,9 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-//import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
-/*import ContenidoInicio from './src/componentes/ContenidoInicio.jsx';
-import SearchBar from './src/componentes/SearchBar.jsx';
-import FullPageMenu from './src/componentes/FullPageMenu.jsx';*/
+
+import { useFonts } from 'expo-font';
+import { useCallback, useState } from 'react';
+
 import Contact from './src/componentes/Contact.jsx';
 import About from './src/componentes/About.jsx';
 import Principal from './src/componentes/Principal.jsx';
@@ -13,36 +11,27 @@ import Contenido3 from './src/componentes/Contenido3.jsx';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-//import { Text, View } from 'react-native';
+
+import { Cart, ProductDetails } from './screens/index';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [isActive, setIsActive] = useState(false);//Funcionalidad del componente
-  const menutoggle = ()=>{
-    setIsActive(!isActive);
-  };
+  const [ fontsLoaded ] = useFonts({
+    regular: require('./assets/fonts/Poppins-Regular.ttf'),
+    light: require('./assets/fonts/Poppins-Light.ttf'),
+    bold: require('./assets/fonts/Poppins-Bold.ttf'),
+    medium: require('./assets/fonts/Poppins-Medium.ttf'),
+    extrabold: require('./assets/fonts/Poppins-ExtraBold.ttf'),
+    semibold: require('./assets/fonts/Poppins-SemiBold.ttf'),
+  });
 
-  const [titulo, setTitulo] = useState('');
-  const [texto, setTexto] = useState('');
+  const onLayoutRootView = useCallback(async()=>{
+    if(fontsLoaded) await SplashScreen.hideAsync();
+  },[fontsLoaded]);
 
-  const postContent = () => {
-    fetch('http://localhost:3000/api/contenido', {//Si Expo corre en dispositivo móvil, usa la IP de tu computadora local en lugar de localhost para conectarte al servidor.
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ titulo, texto }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Contenido guardado:', data);
-    })
-    .catch(error => {
-      console.error('Error al guardar el contenido:', error);
-    });
-  };
-
+  if(!fontsLoaded) return null;
+  
   return (
     <NavigationContainer>
       <Stack.Navigator
