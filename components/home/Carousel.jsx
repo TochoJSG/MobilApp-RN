@@ -1,37 +1,58 @@
-import { View } from 'react-native';
-import { SliderBox } from 'react-native-image-slider-box';
 import React from 'react';
+import { View, Image, StyleSheet } from 'react-native';
+import Swiper from 'react-native-swiper';
 import { Colors, SIZE } from '../../constants';
-import styles from './carousel.style.js';
 
 const Carousel = () => {
-    const slides = [
-        "https://tochamateriasprimas.com/imagenes/productos/6/principal.jpg",
-        "https://tochamateriasprimas.com/imagenes/productos/7/principal.jpg",
-        "https://tochamateriasprimas.com/imagenes/productos/8/principal.jpg",
-        "https://tochamateriasprimas.com/imagenes/productos/10/principal.jpg",
-        "https://tochamateriasprimas.com/imagenes/productos/11/principal.jpg",
-        "https://tochamateriasprimas.com/imagenes/productos/14/principal.jpg",
-        "https://tochamateriasprimas.com/imagenes/productos/15/principal.jpg",
-    ];
+  const slides = [
+    "https://tochamateriasprimas.com/imagenes/productos/6/principal.jpg",
+    "https://tochamateriasprimas.com/imagenes/productos/7/principal.jpg",
+    "https://tochamateriasprimas.com/imagenes/productos/8/principal.jpg",
+    "https://tochamateriasprimas.com/imagenes/productos/10/principal.jpg",
+    "https://tochamateriasprimas.com/imagenes/productos/11/principal.jpg",
+    "https://tochamateriasprimas.com/imagenes/productos/14/principal.jpg",
+    "https://tochamateriasprimas.com/imagenes/productos/15/principal.jpg",
+  ];
 
-    return (
-        <View style={ styles.carouselContainer }>
-            <SliderBox 
-                images = { slides }
-                dotColor = { Colors.primary }
-                inactiveDotColor = { Colors.secondary }
-                imageLoadingColor = "#FF5733"
-                ImageComponentStyle = {{ borderRadius:SIZE.small, width:'95%', marginTop:16 }}
-                autoplay
-                circleLoop
-            />
-        </View>
-    )
+  return (
+    <View style={styles.carouselContainer}>
+      <Swiper
+        autoplay
+        loop
+        dotColor={Colors.secondary}
+        activeDotColor={Colors.primary}
+        autoplayTimeout={3}
+      >
+        {slides.map((slide, index) => (
+          <View key={index} style={styles.slide}>
+            <Image source={{ uri: slide }} style={styles.image} />
+          </View>
+        ))}
+      </Swiper>
+    </View>
+  );
 };
-/*
-ImageComponentStyle = {{ }}
-*/
+
+const styles = StyleSheet.create({
+  carouselContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 16,
+    height:125,
+    position:'relative',
+  },
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: SIZE.small,
+  },
+  image: {
+    width: '95%',
+    height: 117,
+    borderRadius: SIZE.small,
+  },
+});
+
 export default Carousel;
-
-

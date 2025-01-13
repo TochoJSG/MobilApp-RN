@@ -1,15 +1,11 @@
 import { useFonts } from 'expo-font';
 import { useState, useCallback } from 'react';
-
-import Contact from './src/componentes/Contact.jsx';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { Cart, ProductDetails } from './screens/index';
 import BottomTabNavigation from './navigation/BottomTabNavigation.jsx';
-
 
 const Stack = createNativeStackNavigator();
 

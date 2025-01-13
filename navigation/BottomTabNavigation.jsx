@@ -70,9 +70,3 @@ const BottomTabNavigation = () =>{
 };
 
 export default BottomTabNavigation;
-
-/*
-<View>
-<Text>Danna Tamara Reyes Cardenas</Text>
-</View>
-*/

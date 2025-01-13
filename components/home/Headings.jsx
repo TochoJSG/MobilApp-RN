@@ -8,7 +8,7 @@ const Headings = () =>{
     return(
         <View style={ styles.container }>
             <View style={ styles.headerCont }>
-                <Text style={ styles.headerTitle }>Tamara</Text>
+                <Text style={ styles.headerTitle }>Lo mas Hot</Text>
                 <TouchableOpacity>
                     <Ionicons 
                         name='grid'
