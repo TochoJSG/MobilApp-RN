@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Cart, ProductDetails } from './screens/index';
+import { Cart, ProductDetails, NewRivals } from './screens/index';
 import BottomTabNavigation from './navigation/BottomTabNavigation.jsx';
 
 const Stack = createNativeStackNavigator();
@@ -39,6 +39,9 @@ export default function App() {
           options={{ headerShown:false }}
         />
         
+        <Stack.Screen name="ProductList" component={NewRivals} 
+          options={{ headerShown:false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

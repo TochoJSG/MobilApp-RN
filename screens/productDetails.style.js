@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         borderRadius:SIZE.large,
     },
     price:{
-        padding:15,
+        paddingHorizontal:10,
         fontFamily:'semibold',
         fontSize:SIZE.large,
     },

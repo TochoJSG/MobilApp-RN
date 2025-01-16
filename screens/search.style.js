@@ -39,7 +39,14 @@ const styles = StyleSheet.create({
         alignContent:'center',
         justifyContent:'center',
         padding:5
-    }
+    },
+    searchImage:{
+        resizeMode:'contain',
+        width:SIZE.width-100,
+        height:SIZE.height-300,
+        opacity:0.6,
+        alignSelf:'center',
+    },
 });
 
 export default styles;

@@ -5,22 +5,22 @@ import { Colors, } from '../../constants';
 import React from 'react';
 import styles from './productCardView.style.js';
 
-const ProductCardView = () =>{
+const ProductCardView = ({ item }) =>{
     const navigation = useNavigation();
     return(
-        <TouchableOpacity onPress={ ()=> navigation.navigate('ProductDetails') }>
+        <TouchableOpacity onPress={ ()=> navigation.navigate('ProductDetails',{iitem}) }>
             <View style={ styles.container }>
                 <View style={ styles.imageContainer }>
                     <Image 
                         source={{
-                            uri:"https://tochamateriasprimas.com/imagenes/productos/6/principal.jpg"
+                            uri:item.imageUrl,//image
                         }}
                         style={ styles.image } />
                 </View>
                 <View style={ styles.details }>
-                    <Text style={ styles.title } numberOfLines={1} >Danna Reyes</Text>
-                    <Text style={ styles.supplier } numberOfLines={1}>Danna Tamara Reyes Cardenas</Text>
-                    <Text style={ styles.price } numberOfLines={1} >$23</Text>
+                    <Text style={ styles.title } numberOfLines={1} >{ item.title }</Text>
+                    <Text style={ styles.supplier } numberOfLines={1}>{ item.supplier }</Text>
+                    <Text style={ styles.price } numberOfLines={1} >${ item.price }</Text>
                 </View>
                 <TouchableOpacity style={ styles.addBtn}>
                     <Ionicons name="add-circle" 

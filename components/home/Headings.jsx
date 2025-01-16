@@ -3,13 +3,15 @@ import React from 'react';
 import styles from './headings.style.js';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/index'
+import { useNavigation } from '@react-navigation/native'; 
 
 const Headings = () =>{
+    const navigation = useNavigation();
     return(
         <View style={ styles.container }>
             <View style={ styles.headerCont }>
                 <Text style={ styles.headerTitle }>Lo mas Hot</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={ ()=>navigation.navigate('ProductList') }>
                     <Ionicons 
                         name='grid'
                         size={25}
