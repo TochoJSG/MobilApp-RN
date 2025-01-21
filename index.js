@@ -23,12 +23,11 @@ mongoose.connect(process.env.MONGODB_URL).then( ()=> console.log('connected')).c
 app.use(express.json({ limit:'10mb' }) );
 app.use(express.urlencoded({ limit:'10mb',extended:true }) );
 
-app.use('/api/products',productRouter); //Esta es una altenrativa mas pulcra a declarar UNA A UNA cada ruta, esta logica es parte de la modularidad y logica MVC
+app.use('/api/products', productRouter); //Esta es una altenrativa mas pulcra a declarar UNA A UNA cada ruta, esta logica es parte de la modularidad y logica MVC
 app.use('/api/', authRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/users', userRouter );
-app.use('/api/cart', cartRouter );
-
+app.use('/api/carts', cartRouter );
 
 app.listen( process.env.PORT || port, () => console.log(`Example App Listening on Port ${process.env.PORT}`) );
 
