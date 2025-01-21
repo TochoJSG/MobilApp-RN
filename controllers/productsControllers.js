@@ -7,7 +7,8 @@ module.exports = {
             await newProduct.save();
             res.status(200).json('Product Created Successfully');
         }catch(error){
-            res.status(500).json('Failed Product Created');
+            res.status(500).json('Failed Product Created (ProductControllers)');
+            console.error(error);
         }
     },
     getAllProducts: async(req, res)=>{
