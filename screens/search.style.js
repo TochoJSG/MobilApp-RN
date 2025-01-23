@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
         padding:5
     },
     searchImage:{
-        resizeMode:'contain',
-        width:SIZE.width-100,
-        height:SIZE.height-300,
-        opacity:0.6,
+        resizeMode:'cover',
+        width:SIZE.width-17,
+        height:SIZE.height-17,
+        opacity:0.2,
         alignSelf:'center',
     },
 });

@@ -55,7 +55,7 @@ const Search = () =>{
             {searchResults.length === 0 ? (
                 <View style={{flex:1}}>
                     <Image 
-                        source={ require('../assets/images/city1.png') }
+                        source={ require('../assets/bici_lado.png') }
                         style={ styles.searchImage }
                     />
                 </View>
