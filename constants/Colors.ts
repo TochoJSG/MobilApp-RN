@@ -10,6 +10,11 @@ const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
 export const Colors = {
+  tocha:"#daf",
+  tocha2:"#DAFF00",
+  adming:'#23001C',
+  adming2:"#290C23",
+  adming3:"#022B3F",
   primary:"#2A4D50",
   secondary:"#DDF0FF",
   tertiary:"#FF7754",

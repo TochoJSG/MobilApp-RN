@@ -165,7 +165,6 @@ const Profile = ({navigation}) =>{
                         )
                     }
 
-                    
                 </View>
             </View>
         </View>

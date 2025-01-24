@@ -38,9 +38,29 @@ const styles = StyleSheet.create({
         height:50,
         borderRadius:12,
         flexDirection:'row',
-        paddingHorizontal:55,
+        paddingHorizontal:16,
         alignItems:'center',
     }),
+    errorMessage:{
+        color:Colors.red,
+        fontFamily:'regular',
+        marginTop:5,
+        marginLeft:5,
+        fontSize:SIZE.xSmall,
+    },
+    registration:{
+        marginTop:1,
+        textAlign:'center',
+        marginBottom:19,
+    },
+    coverSignUp:{
+        height:SIZE.height / 5,
+        width:'100%',//SIZE.width-60
+        resizeMode:'cover',//contain
+        alignItems:'center',
+        marginBottom:SIZE.small,
+        opacity:0.6,
+    },
 })
 
 export default styles;

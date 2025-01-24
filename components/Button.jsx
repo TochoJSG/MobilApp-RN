@@ -1,19 +1,29 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from "react-native";
 import React from 'react';
 import { Colors } from "../constants";
 
-const Button =({title,onPress})=>{
+const Button =({title, onPress, isValid, loader})=>{
     return(
-        <TouchableOpacity style={styles.btnStyle}>
-            <Text style={styles.btnText}>{title}</Text>
+        <TouchableOpacity onPress={onPress}
+            style={styles.btnStyle(isValid ===false? Colors.adming : Colors.tocha) }
+        >
+            {
+                loader === false ? (
+                    <Text style={styles.btnText}>{title}</Text>
+                ):(
+                    <ActivityIndicator />
+                )
+            
+            }
         </TouchableOpacity>
     )
-}
+};
 
 export default Button;
 
 const styles = StyleSheet.create({
-    btnStyle:{
+    btnStyle:(backgroundColor)=>({
+        backgroundColor:backgroundColor,
         height:50,
         width:'100%',
         marginVertical:19,
@@ -21,11 +31,11 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignContent:'center',
         alignItems:'center',
-        borderRadius:12,
-    },
+        borderRadius:12
+    }),
     btnText:{
         fontFamily:'bold',
         color: Colors.white,
-        fontSize:17,
+        fontSize:17
     },
 });

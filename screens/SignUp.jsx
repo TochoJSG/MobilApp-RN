@@ -1,31 +1,31 @@
 import { Text, Image, ScrollView, TouchableOpacity, TextInput, View, Alert } from "react-native";
-import React, { useState } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackBtn, Button } from "../components";
-import styles from './login.style';
 import { Formik } from "formik";
 import * as Yup from 'yup';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { Colors } from "../constants";
-import axios from "axios";
+import React, { useState } from 'react';
+import styles from './login.style';
 
 const validationSchema = Yup.object().shape({
+    username: Yup.string()
+        .min(3,'Comparte tu ubicacion')
+        .required('Required'),
+    email: Yup.string().email('Ingresa una direccion Valida').required('Required'),
     password: Yup.string()
       .min(8, 'Contraseña de minimo 8 caracteres')
       .required('Required'),
-    email: Yup.string().email('Ingresa una direccion Valida').required('Required'),
+    location: Yup.string()
+        .min(3,'Comparte tu nombre de usuario')
+        .required('Required'),
   });
 
-const LoginPage = ({navigation}) =>{
-    const [loader,setLoader] = useState(false);
-    const [responseData, setResponseData] = useState(null);
+const SignUp = ({navigation}) =>{
+    const [loader, setLoader] = useState(false);
     const [obsecureText, setObsecureText] = useState(false);
-    //const [error, setError] = useState({});
-    /*const [input, setInput] = useState({
-        email:'',
-        password:''
-    });*/
-    const inValidForm = ()=>{
+
+    const invalidForm = ()=>{
         Alert.alert(
             "Registro invalido",
             "Ingresa los Datos requeridos",
@@ -40,49 +40,6 @@ const LoginPage = ({navigation}) =>{
             ]
         )
     };
-
-    const login = async(values)=>{
-        setLoader(true);
-        //console.log(values);
-        try{
-            const endpoint = "http://localhost:3000/api/login";
-            const data = values;
-            const response = await axios.post(endpoint, data);
-
-            if(response.status === 200){
-                setLoader(false);
-                console.log(response.data);
-            }else{
-                Alert.alert(
-                    "Logeo fallido",
-                    "Por favor ingresa de nuevo  las credenciales correctas",
-                    [
-                        {
-                            text:"cancelar", onPress:()=>{}
-                        },
-                        {
-                            test:"continuar", onPress:()=>{}
-                        },
-                        {defaultIndex:1},
-                    ]
-                );
-            }
-        }catch(error){
-            Alert.alert(
-                "Ups, hubo un error, prueba de nuevo",
-                {error},
-                [
-                    {
-                        test:"aceptar", onPress:()=>{}
-                    },
-                    {defaultIndex:1},
-                ]
-            );
-        }finally{
-            setLoader(false);
-        }
-    };
-
     return(
         <ScrollView>
             <SafeAreaView style={{marginHorizontal:19}}>
@@ -91,18 +48,43 @@ const LoginPage = ({navigation}) =>{
 
                     <Image 
                         source={require('../assets/city.png')}
-                        style={styles.cover}
+                        style={styles.coverSignUp}
                     />
 
                 <Text style={styles.title}>Surte tu Negocio</Text>
                 
                 <Formik
-                    initialValues={{ email:'',password:'' }}
+                    initialValues={{ username:'',email:'',password:'',location:'' }}
                     validationSchema={ validationSchema }
-                    onSubmit={ (values)=>login(values) }
+                    onSubmit={ (values)=>console.log(values) }
                 >
                 {({ handleChange, handleBlur, touched, handleSubmit, values, errors, isValid, setFieldTouched }) => (
                     <View>
+                        <View style={styles.wrapper}>
+                            <Text style={styles.label}>Nombre de tu negocio</Text>
+                            <View style={styles.inputWrapper(touched.username ? Colors.secondary : Colors.offwhite)}>
+                                <MaterialCommunityIcons
+                                    name='face-man-profile'
+                                    size={19}
+                                    color={Colors.gray}
+                                    style={styles.iconStyle}
+                                />
+                                <TextInput 
+                                    placeholder="Ingresa tu nombre o el de tu negocio"
+                                    onFocus={()=>{setFieldTouched('username')}}
+                                    onBlur={ ()=>{setFieldTouched('username','')}}
+                                    value={values.username}
+                                    onChangeText={handleChange('username')}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    style={{flex:1}}
+                                />
+
+                            </View>
+                            {touched.username && errors.username &&(
+                                <Text style={styles.errorMessage}>{errors.username}</Text>
+                            )}
+                        </View>
 
                         <View style={styles.wrapper}>
                             <Text style={styles.label}>Correo Electronico</Text>
@@ -127,6 +109,32 @@ const LoginPage = ({navigation}) =>{
                             </View>
                             {touched.email && errors.email &&(
                                 <Text style={styles.errorMessage}>{errors.email}</Text>
+                            )}
+                        </View>
+
+                        <View style={styles.wrapper}>
+                            <Text style={styles.label}>Compartenos tu Ubicacion</Text>
+                            <View style={styles.inputWrapper(touched.location ? Colors.secondary : Colors.offwhite)}>
+                                <Ionicons
+                                    name='location-outline'
+                                    size={19}
+                                    color={Colors.gray}
+                                    style={styles.iconStyle}
+                                />
+                                <TextInput 
+                                    placeholder="Ingresa tu Ubicacion"
+                                    onFocus={()=>{setFieldTouched('location')}}
+                                    onBlur={ ()=>{setFieldTouched('location','')}}
+                                    value={values.location}
+                                    onChangeText={handleChange('location')}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    style={{flex:1}}
+                                />
+
+                            </View>
+                            {touched.location && errors.location &&(
+                                <Text style={styles.errorMessage}>{errors.location}</Text>
                             )}
                         </View>
 
@@ -164,13 +172,12 @@ const LoginPage = ({navigation}) =>{
                             )}
                         </View>
 
-                        <Button title={"L O G I N"} 
-                            loader={loader}
-                            onPress={isValid? handleSubmit : inValidForm }
+                        <Button title={"R E G I S T R A R"} 
+                            onPress={isValid? handleSubmit:invalidForm }
                             isValid={isValid}
                         />
 
-                        <Text style={styles.registration} onPress={()=>{navigation.navigate('SignUp')} }>¿No tienes Cuenta?, registrate</Text>
+                        <Text style={styles.registration} onPress={()=>{navigation.navigate('Login')} }>¿Ya tienes Cuenta?, logeate</Text>
 
                     </View>
                 )}
@@ -180,6 +187,7 @@ const LoginPage = ({navigation}) =>{
                 </View>
             </SafeAreaView>   
         </ScrollView>
-    );
-};
-export default LoginPage;
+    )
+}
+
+export default SignUp;

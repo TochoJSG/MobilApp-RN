@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
-import { Cart, ProductDetails, NewRivals, Login, Favourites, Orders } from './screens/index';
+import { Cart, ProductDetails, NewRivals, Login, Favourites, Orders, SignUp } from './screens/index';
 import BottomTabNavigation from './navigation/BottomTabNavigation.jsx';
 
 const Stack = createNativeStackNavigator();//A esta constante, asignamos todas las propiedades de navegacion de la funcion nativa
@@ -12,7 +12,7 @@ Una vez que se asigno a la constante Stack todas las propiedades del metodo nati
 
 Stack.Screen name="ProductDetails" component={ProductDetails}
 
-donde: 
+donde:
   nombre="" debe ser unico, pues debe identificar al elemento para navegar o encontrar un elemento
   component={ProductDetails} asigna que componente debe mostrar al referirse a ese name, el componente si se puede repeir y reutilizar a voluntad
 */
@@ -55,6 +55,9 @@ export default function App(){
           options={{ headerShown:false }}
         />
         <Stack.Screen name="Favourites" component={ Favourites }
+          options={{ headerShown:false }}
+        />
+        <Stack.Screen name="SignUp" component={ SignUp }
           options={{ headerShown:false }}
         />
 
